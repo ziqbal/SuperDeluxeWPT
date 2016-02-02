@@ -13,5 +13,3 @@
 - add one extra level of navigation on main navigation
 - add one level (3 levels) to sidebar
 
-# Thanks
-- http://startbootstrap.com for the base "Modern Business HTML Template"
