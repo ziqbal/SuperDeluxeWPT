@@ -4,6 +4,8 @@
 add_action( 'init', '_postCreateTypes' );
 add_action( 'p2p_init', '_postConnection' ) ;
 
+add_filter( 'widget_text', 'do_shortcode' );
+
 function _postCreateTypes( ) {
 
   register_post_type(

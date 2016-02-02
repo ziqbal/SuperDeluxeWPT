@@ -5,7 +5,9 @@
 - WordPress 4.x :)
 - wp-nested-pages plugin
 - wp-posts-to-posts plugin
-
+- advanced-custom-fields
+- contact-form-7
+ 
 # Included
 - jQuery 2.2.0
 - Bootstrap 3.3.6

@@ -30,7 +30,8 @@ Template Name: Left Sidebar
 	    </div>
 
 	    <div class="col-md-9">
-	    <?= get_post( )->post_content ?>
+	    <?= apply_filters('the_content', get_post( )->post_content) ?>
+<?= get_template_part( 'template-parts/_nav' , 'connectedacf' ) ?>
 <?= get_template_part( 'template-parts/_nav' , 'connected' ) ?>
 	    </div>
 	</div>
