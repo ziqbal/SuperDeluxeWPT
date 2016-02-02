@@ -1,8 +1,3 @@
-<?php
-/*
-Template Name: Left Sidebar
-*/
-?>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -23,17 +18,15 @@ Template Name: Left Sidebar
         </div>
     </div>
 
-	<div class="row">
 
-	    <div class="col-md-3">
-<?= get_template_part( 'template-parts/_nav' , 'leftsidebar' ) ?>
-	    </div>
-
-	    <div class="col-md-9">
-	    <?= get_post( )->post_content ?>
-<?= get_template_part( 'template-parts/_nav' , 'connected' ) ?>
-	    </div>
-	</div>
+    <div class="row">
+        <div class="col-md-6">
+            <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+        </div>
+        <div class="col-md-6">
+        <?= get_post( )->post_content ?>
+        </div>
+    </div>          
 
     <?= get_template_part( 'template-parts/_footer' ) ?>
 

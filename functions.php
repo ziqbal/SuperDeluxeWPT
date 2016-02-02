@@ -1,6 +1,31 @@
 <?php
 
 
+add_action( 'init', 'create_post_type_acontent' );
+function create_post_type_acontent() {
+  register_post_type( 'acontent',
+    array(
+      'labels' => array(
+        'name' => __( 'aContents' ),
+        'singular_name' => __( 'aContent' )
+      ),
+      'public' => true,
+      'has_archive' => true,
+    )
+  );
+}
+
+function my_connection_types() {
+    p2p_register_connection_type( array(
+        'name' => 'acontent_to_pages',
+        'from' => 'acontent',
+        'to' => 'page'
+    ) );
+}
+add_action( 'p2p_init', 'my_connection_types' );
+
+//flush_rewrite_rules();
+
 function _pagesDisplay( $pages ) {
 
 	foreach( $pages as $pk => $page ) {
