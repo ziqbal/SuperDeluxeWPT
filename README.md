@@ -10,5 +10,5 @@
 - Bootstrap 3.3.6
 
 # FIXME TODO
-- Maybe, maybe not add one extra level of navigation on main navigation
+- Maybe, maybe not add one extra level on main navigation
 
