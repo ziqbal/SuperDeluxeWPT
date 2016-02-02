@@ -1,5 +1,5 @@
-# WPT Super Deluxe
-- A WordPress Theme
+# Super Deluxe WPT
+- A Super Deluxe WordPress Theme
 
 # Prerequisites
 - WordPress 4.x :)
