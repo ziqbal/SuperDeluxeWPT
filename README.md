@@ -4,6 +4,7 @@
 # Prerequisites
 - WordPress 4.x :)
 - wp-nested-pages plugin
+- wp-posts-to-posts plugin
 
 # Included
 - jQuery 2.2.0

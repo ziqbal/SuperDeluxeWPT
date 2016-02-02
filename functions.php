@@ -1,28 +1,40 @@
 <?php
 
 
-add_action( 'init', 'create_post_type_acontent' );
-function create_post_type_acontent() {
-  register_post_type( 'acontent',
+add_action( 'init', '_postCreateTypes' );
+add_action( 'p2p_init', '_postConnection' ) ;
+
+function _postCreateTypes( ) {
+
+  register_post_type(
+
+	'acontent',
+	
     array(
-      'labels' => array(
-        'name' => __( 'aContents' ),
-        'singular_name' => __( 'aContent' )
-      ),
-      'public' => true,
-      'has_archive' => true,
+
+		'labels' => array(
+        	'name' => __( 'aContents' ) ,
+        	'singular_name' => __( 'aContent' )
+      	) ,
+      	'public' => true ,
+      	'has_archive' => true ,
     )
-  );
+
+  ) ;
+
 }
 
-function my_connection_types() {
+function _postConnection( ) {
+
     p2p_register_connection_type( array(
-        'name' => 'acontent_to_pages',
-        'from' => 'acontent',
-        'to' => 'page'
-    ) );
+
+        'name' => 'acontent_to_pages' ,
+        'from' => 'acontent' ,
+        'to' => 'page' ,
+
+    ) ) ;
+
 }
-add_action( 'p2p_init', 'my_connection_types' );
 
 //flush_rewrite_rules();
 
@@ -77,7 +89,7 @@ function _pagesGetByParent( $x ) {
 	$args = array(
 
 	    'sort_column' => 'menu_order' ,
-	    'order'=>'ASC' ,
+	    'order' => 'ASC' ,
 	    'hierarchical' => 0 ,
 	    'child_of' => 0 ,
 	    'parent' => $x ,
