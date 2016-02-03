@@ -4,7 +4,6 @@
 # Prerequisites
 - WordPress 4.x :)
 - wp-nested-pages plugin
-- wp-posts-to-posts plugin
 - advanced-custom-fields
 - contact-form-7
  
@@ -14,4 +13,3 @@
 
 # FIXME TODO
 - Maybe, maybe not add one extra level on main navigation
-
