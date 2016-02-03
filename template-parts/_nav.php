@@ -1,22 +1,15 @@
 <?php
 
-$_args = array(
+$pages = _pagesGetByParent( 0 ) ;
 
-    'sort_column' => 'menu_order',
-    'order'=>'ASC',
-    'hierarchical' => 0 ,
-    'child_of' => 0,
-    'parent' => 0,
-    'post_type' => 'page',
-    'post_status' => 'publish'
+foreach( $pages as $pk => $page ) {
+    $pages[ $pk ]->children = _pagesGetByParent( $page->ID ) ;
+}
 
-) ; 
-
-$_pages = get_pages( $_args ) ; 
 
 ?>
 
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 
 <div class="container">
 
@@ -30,14 +23,50 @@ $_pages = get_pages( $_args ) ;
         <a class="navbar-brand" href="<?= site_url( )?>"><?php echo get_bloginfo( 'name' ); ?></a>
     </div>
 
+
+
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
 
     <ul class="nav navbar-nav navbar-right">
 
-    <?php foreach( $_pages as $_pk=>$_pv ) { ?>
+    <?php
+
+        foreach( $pages as $pk => $pv ) {
+
+            $hasChildren = ( property_exists( $pv, 'children') && ( count( $pv->children ) > 0 ) ) ;
+
+            $cl = "" ;
+            $dt = "" ;
+            $sym = "" ;
+
+            if( $hasChildren ) {
+
+                $cl = "dropdown-toggle" ;
+                $dt = "dropdown" ;
+                $sym = "caret" ;
+
+            }
+
+    ?>
 
     <li>
-        <a href="<?= get_permalink( $_pv) ?>"><?= $_pv->post_title ?></a>
+
+        <a class='<?=$cl?>' data-toggle='<?=$dt?>' href="<?= get_permalink( $pv) ?>">
+        <?= $pv->post_title ?>
+        <span class='<?=$sym?>'></span>
+        </a>
+        <?php
+            if($hasChildren){
+                print("<ul class='dropdown-menu'>");
+                foreach($pv->children as $chk => $chv){
+                   print("<li><a href='".get_permalink($chv)."'>".$chv->post_title."</a></li>"); 
+
+                }
+                print("</ul>");
+            }
+        ?>
+
     </li>    
 
     <?php } ?>

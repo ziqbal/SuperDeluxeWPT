@@ -46,7 +46,7 @@ function _pagesDisplay( $pages ) {
 
 		$href = get_permalink( $page ) ;
 		$title = $page->post_title ;
-		$hasChildren = ( isset( $page->children ) && count( $page->children ) > 0 ) ;
+		$hasChildren = ( property_exists( $page, 'children') && count( $page->children ) > 0 ) ;
 
 	    print( "<a href='{$href}' class='list-group-item'>{$title}</a>\n" ) ;
 

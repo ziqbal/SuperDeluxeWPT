@@ -11,7 +11,7 @@ $( function( ) {
 
 	$( '._navcollapsable' ).hide( ) ;
 
-	$( document ).find( 'a' ).each( function( ) {
+	$( '._leftsidebar' ).find( 'a' ).each( function( ) {
 
 		if( window.location.href == $( this ).attr( 'href' ) ) {
 
