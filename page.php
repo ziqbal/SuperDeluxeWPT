@@ -15,6 +15,7 @@
         <div class="col-lg-12">
             <h1 class="page-header"><?= get_the_title( ) ?>
             </h1>
+            
         </div>
     </div>
 

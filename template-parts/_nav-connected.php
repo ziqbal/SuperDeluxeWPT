@@ -1,32 +1,34 @@
-<?php
+<?php 
 
-$connected = new WP_Query( array(
 
-  'connected_type' => 'acontent_to_pages' ,
-  'connected_items' => $post->ID ,
-  'nopaging' => true ,
+$pagerelations = get_posts( array(
+
+    'post_type' => 'primarycontent' ,
+
+    'meta_query' => array(
+
+        array(
+
+            'key' => 'pagerelation' , 
+            'value' => '"' . get_the_ID( ) . '"',
+            'compare' => 'LIKE'
+        )
+
+    )
 
 ) ) ;
 
+if( $pagerelations ) {
 
-if ( $connected->have_posts( ) ) :
+    foreach( $pagerelations as $pagerelation ) {
 
-?>
+        print("<a href='".get_permalink($pagerelation)."'>".$pagerelation->post_title."</a>");
 
-aContent
-<ul>
-<?php while ( $connected->have_posts( ) ) : $connected->the_post( ) ; ?>
 
-    <li><a href="<?php the_permalink( ) ; ?>"><?php the_title( ) ; ?></a></li>
+    }
 
-<?php endwhile ; ?>
+}
 
-</ul>
-
-<?php 
 
 wp_reset_postdata();
-endif ;
-
-?>
 

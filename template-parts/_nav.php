@@ -34,6 +34,8 @@ foreach( $pages as $pk => $page ) {
 
         foreach( $pages as $pk => $pv ) {
 
+            if($pv->post_title=='HOMEPAGE') continue;
+
             $hasChildren = ( property_exists( $pv, 'children') && ( count( $pv->children ) > 0 ) ) ;
 
             $cl = "" ;

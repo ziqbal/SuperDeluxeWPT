@@ -1,0 +1,1 @@
+Create "HOMEPAGE" page which will be sued for homepage configuration

@@ -2,21 +2,18 @@
 
 
 add_action( 'init', '_postCreateTypes' );
-add_action( 'p2p_init', '_postConnection' ) ;
-
-add_filter( 'widget_text', 'do_shortcode' );
 
 function _postCreateTypes( ) {
 
   register_post_type(
 
-	'acontent',
+	'primarycontent',
 	
     array(
 
 		'labels' => array(
-        	'name' => __( 'aContents' ) ,
-        	'singular_name' => __( 'aContent' )
+        	'name' => __( 'primaryContent' ) ,
+        	'singular_name' => __( 'primaryContent' )
       	) ,
       	'public' => true ,
       	'has_archive' => true ,
@@ -24,21 +21,65 @@ function _postCreateTypes( ) {
 
   ) ;
 
-}
+  register_post_type(
 
-function _postConnection( ) {
+	'secondarycontent',
+	
+    array(
 
-    p2p_register_connection_type( array(
+		'labels' => array(
+        	'name' => __( 'secondaryContent' ) ,
+        	'singular_name' => __( 'secondaryContent' )
+      	) ,
+      	'public' => true ,
+      	'has_archive' => true ,
+    )
 
-        'name' => 'acontent_to_pages' ,
-        'from' => 'acontent' ,
-        'to' => 'page' ,
+  ) ;  
 
-    ) ) ;
+  register_post_type(
+
+	'tertiarycontent',
+	
+    array(
+
+		'labels' => array(
+        	'name' => __( 'tertiaryContent' ) ,
+        	'singular_name' => __( 'tertiaryContent' )
+      	) ,
+      	'public' => true ,
+      	'has_archive' => true ,
+    )
+
+  ) ;    
 
 }
 
 //flush_rewrite_rules();
+
+
+function _pagesHomepage( ) {
+
+	$page = NULL ;
+
+	$pages = _pagesGetByParent( 0 ) ;
+
+	$foundPage = false ;
+
+	foreach($pages as $pk=>$pv){
+	    
+	    if($pv->post_title=="HOMEPAGE"){
+
+	        $page=$pv;
+	        $foundPage=true;
+
+	    }
+
+	}
+
+	return( $page ) ;
+
+}
 
 function _pagesDisplay( $pages ) {
 
@@ -111,3 +152,157 @@ function _log( $msg ) {
 	error_log( "\n".var_export( $msg , true ) ) ;
 
 } 
+
+
+
+if( function_exists( "register_field_group" ) ) {
+
+	$fields = array( ) ;
+
+	for( $i = 1 ; $i < 6 ; $i++ ) {
+
+		$fields[ ] = array(
+
+				"key" => "ss_field_image_{$i}" ,
+				"label" => "Image {$i}" ,
+				"name" => "slideshow_image_{$i}" ,
+				"type" => "image" ,
+				"save_format" => "object" ,
+				"preview_size" => "thumbnail" ,
+				"library" => "all" ,
+
+		) ;
+
+		$fields[ ] = array(
+
+				"key" => "ss_field_text_{$i}" ,
+				"label" => "Text {$i}",
+				'name' => "slideshow_text_{$i}",
+				"type" => "text",
+				"default_value" => '',
+				"placeholder" => '',
+				"prepend" => '',
+				"append" => '',
+				"formatting" => 'html',
+				"maxlength" => '',			
+
+		) ;		
+
+		$fields[ ] = array(
+
+				"key" => "ss_field_link_{$i}" ,
+				"label" => "Link {$i}",
+				'name' => "slideshow_link_{$i}",
+				"type" => "text",
+				"default_value" => '',
+				"placeholder" => '',
+				"prepend" => '',
+				"append" => '',
+				"formatting" => 'html',
+				"maxlength" => '',			
+
+		) ;		
+
+	}
+
+
+	register_field_group(array (
+		'id' => 'acf_homepage-slideshow',
+		'title' => 'Homepage Slideshow',
+		'fields' => $fields ,
+		'location' => array (
+			array (
+				array (
+					'param' => 'post_type',
+					'operator' => '==',
+					'value' => 'page',
+					'order_no' => 0,
+					'group_no' => 0,
+				),
+			),
+		),
+		'options' => array (
+			'position' => 'normal',
+			'layout' => 'default',
+			'hide_on_screen' => array (
+			),
+		),
+		'menu_order' => 0,
+	));
+
+
+	register_field_group(array (
+		'id' => 'acf_page',
+		'title' => 'Page',
+		'fields' => array (
+			array (
+				'key' => 'field_56b1c39e4dd0a',
+				'label' => 'Page',
+				'name' => 'pagerelation',
+				'type' => 'page_link',
+				'post_type' => array (
+					0 => 'page',
+				),
+				'allow_null' => 0,
+				'multiple' => 1,
+			),
+			array (
+				'key' => 'field_56b1c74570092',
+				'label' => 'Main Image',
+				'name' => 'main_image',
+				'type' => 'image',
+				'save_format' => 'object',
+				'preview_size' => 'thumbnail',
+				'library' => 'all',
+			),
+		),
+		'location' => array (
+			array (
+				array (
+					'param' => 'post_type',
+					'operator' => '==',
+					'value' => 'primarycontent',
+					'order_no' => 0,
+					'group_no' => 0,
+				),
+			),
+			array (
+				array (
+					'param' => 'post_type',
+					'operator' => '==',
+					'value' => 'secondarycontent',
+					'order_no' => 0,
+					'group_no' => 1,
+				),
+			),
+			array (
+				array (
+					'param' => 'post_type',
+					'operator' => '==',
+					'value' => 'tertiarycontent',
+					'order_no' => 0,
+					'group_no' => 2,
+				),
+			),
+			array (
+				array (
+					'param' => 'post_type',
+					'operator' => '==',
+					'value' => 'post',
+					'order_no' => 0,
+					'group_no' => 3,
+				),
+			),
+		),
+		'options' => array (
+			'position' => 'normal',
+			'layout' => 'no_box',
+			'hide_on_screen' => array (
+			),
+		),
+		'menu_order' => 0,
+	));
+}
+
+
+
