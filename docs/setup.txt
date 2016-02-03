@@ -1,4 +1,4 @@
-Create "HOMEPAGE" page which will be sued for homepage configuration
+Create "HOMEPAGE" page which will be used for homepage configuration
 
 
 Slideshow
