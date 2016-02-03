@@ -3,9 +3,9 @@
 
 # Prerequisites
 - WordPress 4.x https://wordpress.org
-- wp-nested-pages plugin https://wordpress.org/plugins/wp-nested-pages/
-- advanced-custom-fields plugin https://wordpress.org/plugins/advanced-custom-fields/
-- contact-form-7 plugin https://wordpress.org/plugins/contact-form-7/
+- Nested Pages Plugin https://wordpress.org/plugins/wp-nested-pages/
+- Advanced Custom Fields Plugin https://wordpress.org/plugins/advanced-custom-fields/
+- Contact Form 7 Plugin https://wordpress.org/plugins/contact-form-7/
  
 # Included
 - jQuery 2.2.0
