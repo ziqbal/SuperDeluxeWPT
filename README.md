@@ -10,4 +10,5 @@
 # Included
 - jQuery 2.2.0
 - Bootstrap 3.3.6
+- Masonry 4.0.0
 
