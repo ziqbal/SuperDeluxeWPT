@@ -42,10 +42,12 @@ if( $page ) {
 
 ?>
 
-<header id="myCarousel" class="carousel slide">
+<header id="myCarousel" class="carousel slide carousel-fade">
 
+<?php if(count($data)>1){ ?>
 
     <ol class="carousel-indicators">
+}
 <?php
     foreach($data as $dk=>$dv){
         $cl='';
@@ -57,6 +59,8 @@ if( $page ) {
     }
 ?>
     </ol>
+
+<?php } ?>    
 
 
 
@@ -86,6 +90,9 @@ if( $page ) {
 
     </div>
 
+<?php if(count($data)>1){ ?>
+
+
     <a class="left carousel-control" href="#myCarousel" data-slide="prev">
         <span class="icon-prev"></span>
     </a>
@@ -94,5 +101,8 @@ if( $page ) {
         <span class="icon-next"></span>
     </a>
 
+<?php
+    }
+?>
 </header>
 
