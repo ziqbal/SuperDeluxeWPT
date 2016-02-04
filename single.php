@@ -20,9 +20,14 @@
 
 
     <div class="row">
+    
         <div class="col-md-6">
-            <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+
+<?= get_template_part( 'template-parts/_carousel' , 'single' ) ?>
+
+
         </div>
+
         <div class="col-md-6">
         <?= get_post( )->post_content ?>
         </div>

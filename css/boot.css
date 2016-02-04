@@ -6,6 +6,13 @@
     
 }
 
+.grid-item {
+
+  float: left;
+  width: 200px;
+
+}
+.grid-item--width2 { width: 400px; }
 
 
 .carousel-fade .carousel-inner .item {

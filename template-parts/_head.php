@@ -15,6 +15,8 @@
 <script src="<?php bloginfo( 'stylesheet_directory' ) ?>/js/jquery.js"></script>
 <script src="<?php bloginfo( 'stylesheet_directory' ) ?>/js/bootstrap.min.js"></script>    
 
+<script src="<?php bloginfo( 'stylesheet_directory' ) ?>/js/masonry.pkgd.min.js"></script>    
+
 <link href="<?php bloginfo( 'stylesheet_directory' ) ?>/css/boot.css" rel="stylesheet">
 <script src="<?php bloginfo( 'stylesheet_directory' ) ?>/js/boot.js"></script>    
 

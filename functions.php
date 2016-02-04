@@ -154,6 +154,16 @@ function _log( $msg ) {
 } 
 
 
+add_action('acf/input/admin_head', 'my_acf_input_admin_head');
+function my_acf_input_admin_head() {
+?>
+<script type="text/javascript">
+jQuery(function(){
+  jQuery('.acf_postbox').addClass('closed');
+});
+</script>
+<?php
+}
 
 if( function_exists( "register_field_group" ) ) {
 
@@ -207,8 +217,8 @@ if( function_exists( "register_field_group" ) ) {
 
 
 	register_field_group(array (
-		'id' => 'acf_homepage-slideshow',
-		'title' => 'Homepage Slideshow',
+		'id' => 'acf-imagegroup',
+		'title' => 'Content Group 1',
 		'fields' => $fields ,
 		'location' => array (
 			array (
@@ -220,6 +230,17 @@ if( function_exists( "register_field_group" ) ) {
 					'group_no' => 0,
 				),
 			),
+
+			array (
+				array (
+					'param' => 'post_type',
+					'operator' => '==',
+					'value' => 'primarycontent',
+					'order_no' => 0,
+					'group_no' => 1,
+				),
+			),
+
 		),
 		'options' => array (
 			'position' => 'normal',
@@ -246,15 +267,7 @@ if( function_exists( "register_field_group" ) ) {
 				'allow_null' => 0,
 				'multiple' => 1,
 			),
-			array (
-				'key' => 'field_56b1c74570092',
-				'label' => 'Main Image',
-				'name' => 'main_image',
-				'type' => 'image',
-				'save_format' => 'object',
-				'preview_size' => 'thumbnail',
-				'library' => 'all',
-			),
+
 		),
 		'location' => array (
 			array (

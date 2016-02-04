@@ -1,10 +1,8 @@
 <?php
 
-$page = _pagesHomepage( ) ;
 
-if( $page ) {
 
-    $postmeta = get_post_meta( $page->ID ) ;
+    $postmeta = get_post_meta( get_the_ID( ) ) ;
 
     $data = array( ) ;
 
@@ -37,22 +35,25 @@ if( $page ) {
 
     }
 
-}
-
 
 ?>
 
-<header id="myCarousel" class="carousel slide carousel-fade">
+
+
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
 
 <?php if(count($data)>1){ ?>
 
     <ol class="carousel-indicators">
+
 <?php
     foreach($data as $dk=>$dv){
         $cl='';
         if($dk==0) $cl='active';
 ?>
-        <li data-target="#myCarousel" data-slide-to="<?=$dk?>" class="<?=$cl?>"></li>
+
+        <li data-target="#carousel-example-generic" data-slide-to="<?=$dk?>" class="<?=$cl?>"></li>
 
 <?php
     }
@@ -75,12 +76,11 @@ if( $page ) {
         }
         if($dk==0) $cl='active';
 ?>
+
         <div class="item <?=$cl?>">
-            <div class="fill" style="background-image:url('<?=$dv['image'][0]?>');"></div>
-            <div class="carousel-caption">
-                <h2><?=$caption?></h2>
-            </div>
+            <img src='<?=$dv['image'][0]?>'/>
         </div>
+
 
 <?php
     }
@@ -92,16 +92,18 @@ if( $page ) {
 <?php if(count($data)>1){ ?>
 
 
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
         <span class="icon-prev"></span>
     </a>
 
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
         <span class="icon-next"></span>
     </a>
 
 <?php
     }
 ?>
-</header>
+
+
+</div>
 
